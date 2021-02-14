@@ -1,0 +1,19 @@
+<button *ngIf="hasStartedGame === false" (click)="startGame()">Start</button>
+
+<button *ngIf="hasStartedGame === true" (click)="startGame()">Restart</button>
+
+<div *ngIf="hasStartedGame === true">
+  Current player: {{activePlayerId}} <br />
+  Current game: #{{activeGameId}}
+  <div *ngIf="this.isFinishedGame">
+    Game Over! Winer: {{winner}}
+  </div>
+</div>
+
+<div id="table" *ngIf="hasStartedGame === true">
+  <span *ngFor="let item of tableState | keyvalue">
+    <button *ngIf="item.value === '-'" (click)="choosePlace(item.key)">&nbsp;</button>
+    <button *ngIf="item.value !== '-'">{{item.value}}</button>
+    <br *ngIf="item.key % 3 == 0" />
+  </span>
+</div>
