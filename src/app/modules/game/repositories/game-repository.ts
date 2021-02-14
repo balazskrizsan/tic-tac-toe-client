@@ -22,6 +22,9 @@ export class GameRepository extends AbstractApiRepository {
   }
 
   public choosePlace(gameState: IGameState): Observable<IResponseEntity<IChoosePlaceResponse>> {
-    return this.post(this.getController() + '/' + gameState.gameId + '/choose-place', gameState);
+    return this.post(this.getController() + '/' + gameState.gameId + '/choose-place', {
+      placeId: gameState.placeId,
+      playerId: gameState.playerId
+    });
   }
 }
